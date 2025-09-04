@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@layer base {
+  :root {
+    --color-roxo: #6a0dad;
+    --color-rosa: #ff4da6;
+    --color-verde: #00c896;
+    --color-cinza: #6b7280;
+  }
+}
