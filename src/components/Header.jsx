@@ -57,9 +57,26 @@ export default function Header() {
               Escolinhas
             </Link>
           </li>
+
+          {/* Botões dentro do menu mobile */}
+          <div className="flex flex-col gap-3 mt-4 lg:hidden">
+            <Link
+              href="/login"
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
+            >
+              Entrar
+            </Link>
+            <Link
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+            >
+              Cadastrar
+            </Link>
+          </div>
         </ul>
 
-        {/* Botões */}
+        {/* Botões desktop */}
         <div className="hidden lg:flex gap-3">
           <Link
             href="/login"
