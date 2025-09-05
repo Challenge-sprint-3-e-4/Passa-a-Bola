@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
-import Logo from "../assets/logo.png"; // Importação correta da imagem
+import Logo from "../assets/logo.png";
 
 export default function Header() {
   const [location] = useLocation();
@@ -8,23 +8,20 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto flex items-center py-4 px-6">
-
-        {/* Logo */}
+      <nav className="container mx-auto flex items-center justify-between py-4 px-6">
+        
+        {/* Logo + Nome */}
         <div className="flex items-center gap-2">
-          <img src={Logo} alt="Logo" className="h-15 w-15" /> {/* Usando a variável */}
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
+          <img src={Logo} alt="Logo" className="h-10 w-10" />
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
             PASSA A BOLA
           </h1>
         </div>
 
         {/* Links do menu */}
         <ul
-          className={`
-            flex-1 flex flex-col lg:flex-row items-center justify-center gap-6 text-gray-600 font-medium
-            ${isOpen ? "flex" : "hidden"} lg:flex
-            absolute lg:static top-16 left-0 w-full lg:w-auto bg-white lg:bg-transparent p-4 lg:p-0 shadow-md lg:shadow-none
-          `}
+          className={`lg:flex lg:items-center lg:gap-6 text-gray-600 font-medium transition-all duration-300
+          ${isOpen ? "block absolute top-16 left-0 w-full bg-white shadow-md p-4" : "hidden"} lg:static lg:block`}
         >
           <li>
             <Link
@@ -62,7 +59,7 @@ export default function Header() {
           </li>
         </ul>
 
-        {/* Botões (desktop) */}
+        {/* Botões */}
         <div className="hidden lg:flex gap-3">
           <Link
             href="/login"
@@ -70,21 +67,20 @@ export default function Header() {
           >
             Entrar
           </Link>
-          <button
+          <Link
             className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
           >
             Cadastrar
-          </button>
+          </Link>
         </div>
 
-        {/* Botão hambúrguer (mobile) */}
+        {/* Botão hambúrguer */}
         <button
-          className="lg:hidden ml-4 p-2 rounded-md border border-gray-300"
+          className="lg:hidden ml-auto p-2 rounded-md border border-gray-300"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? "✖" : "☰"}
         </button>
-
       </nav>
     </header>
   );
