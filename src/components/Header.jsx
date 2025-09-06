@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
 export default function Header() {
-  const [location] = useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -15,7 +16,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-    setLocation("/login");
+    navigate("/login");
   };
 
   return (
@@ -37,35 +38,35 @@ export default function Header() {
         >
           <li>
             <Link
-              href="/"
-              className={`${location === "/" ? "text-[var(--color-roxo)]" : "text-gray-600"} hover:text-[var(--color-roxo)]`}
+              to="/"
+              className={`${location.pathname === "/" ? "text-[var(--color-roxo)]" : "text-gray-600"} hover:text-[var(--color-roxo)]`}
               onClick={() => setIsOpen(false)}
             >
               Início
             </Link>
           </li>
           <li>
-            <Link href="/jogadoras" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
+            <Link to="/jogadoras" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
               Jogadoras
             </Link>
           </li>
           <li>
-            <Link href="/blog" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
+            <Link to="/blog" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
               Blog
             </Link>
           </li>
           <li>
-            <Link href="/clubes" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
+            <Link to="/clubes" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
               Clubes
             </Link>
           </li>
           <li>
-            <Link href="/campeonatos" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
+            <Link to="/campeonatos" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
               Campeonatos
             </Link>
           </li>
           <li>
-            <Link href="/escolinhas" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
+            <Link to="/escolinhas" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
               Escolinhas
             </Link>
           </li>
@@ -75,13 +76,15 @@ export default function Header() {
             {!isLoggedIn ? (
               <>
                 <Link
-                  href="/login"
+                  to="/login"
                   onClick={() => setIsOpen(false)}
                   className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
                 >
                   Entrar
                 </Link>
+                {/* adicionei um destino para o botão Cadastrar (pode ajustar se tiver outra rota) */}
                 <Link
+                  to="/cadastro"
                   onClick={() => setIsOpen(false)}
                   className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
                 >
@@ -104,12 +107,14 @@ export default function Header() {
           {!isLoggedIn ? (
             <>
               <Link
-                href="/login"
+                to="/login"
                 className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100"
               >
                 Entrar
               </Link>
+              {/* adicionei um destino para o botão Cadastrar (pode ajustar se tiver outra rota) */}
               <Link
+                to="/cadastro"
                 className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
               >
                 Cadastrar

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useLocation } from "wouter";
+import { useNavigate } from "react-router-dom";
 import { ServidorLogin } from "../components/Servidorlogin";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [, setLocation] = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ export default function Login() {
     if (response.ok) {
       localStorage.setItem("token", response.token);
       setMessage("Login bem-sucedido!");
-      setLocation("/"); // redireciona para a página inicial
+      navigate("/"); // redireciona para a página inicial
     } else {
       setMessage(response.message);
     }

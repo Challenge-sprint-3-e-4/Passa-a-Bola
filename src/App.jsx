@@ -1,14 +1,12 @@
 import React from "react";
-import { Route, Switch, useLocation } from "wouter";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 
 // Componentes
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 
-
 // Páginas
-
 import Jogadoras from "./pages/Jogadoras";
 import Blog from "./pages/Blog";
 import Clubes from "./pages/Clubes";
@@ -16,54 +14,57 @@ import Campeonatos from "./pages/Campeonatos";
 import Escolinhas from "./pages/Escolinha";
 import Inicio from "./pages/inicio";
 
-
 // Função para verificar se o usuário está logado
 const isLoggedIn = () => {
   return !!localStorage.getItem("token");
 };
 
 export default function App() {
-  const [, setLocation] = useLocation();
+  const navigate = useNavigate();
 
   // Se o usuário não estiver logado e tentar acessar qualquer rota protegida, redireciona para login
   React.useEffect(() => {
     if (!isLoggedIn() && window.location.pathname !== "/login") {
-      setLocation("/login");
+      navigate("/login");
     }
-  }, [setLocation]);
+  }, [navigate]);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
 
       <main className="flex-1">
-        <Switch>
-          <Route path="/login">
-            <Login />
-          </Route>
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
           {/* Rotas protegidas */}
-          <Route path="/jogadoras">
-            {isLoggedIn() ? <Jogadoras /> : setLocation("/login")}
-          </Route>
-          <Route path="/blog">
-            {isLoggedIn() ? <Blog /> : setLocation("/login")}
-          </Route>
-          <Route path="/clubes">
-            {isLoggedIn() ? <Clubes /> : setLocation("/login")}
-          </Route>
-          <Route path="/campeonatos">
-            {isLoggedIn() ? <Campeonatos /> : setLocation("/login")}
-          </Route>
-          <Route path="/escolinhas">
-            {isLoggedIn() ? <Escolinhas /> : setLocation("/login")}
-          </Route>
+          <Route
+            path="/jogadoras"
+            element={isLoggedIn() ? <Jogadoras /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/blog"
+            element={isLoggedIn() ? <Blog /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/clubes"
+            element={isLoggedIn() ? <Clubes /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/campeonatos"
+            element={isLoggedIn() ? <Campeonatos /> : <Navigate to="/login" replace />}
+          />
+          <Route
+            path="/escolinhas"
+            element={isLoggedIn() ? <Escolinhas /> : <Navigate to="/login" replace />}
+          />
 
           {/* Página inicial */}
-          <Route path="/">
-            {isLoggedIn() ? <Inicio /> : setLocation("/login")}
-          </Route>
-        </Switch>
+          <Route
+            path="/"
+            element={isLoggedIn() ? <Inicio /> : <Navigate to="/login" replace />}
+          />
+        </Routes>
       </main>
 
       <Footer />
