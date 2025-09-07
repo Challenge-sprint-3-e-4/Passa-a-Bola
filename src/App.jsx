@@ -12,7 +12,7 @@ import Blog from "./pages/Blog";
 import Clubes from "./pages/Clubes";
 import Campeonatos from "./pages/Campeonatos";
 import Escolinhas from "./pages/Escolinha";
-import Inicio from "./pages/inicio";
+import Inicio from "./pages/Inicio";
 
 // Função para verificar se o usuário está logado
 const isLoggedIn = () => {
