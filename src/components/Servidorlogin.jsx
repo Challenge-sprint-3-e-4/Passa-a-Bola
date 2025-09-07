@@ -1,9 +1,14 @@
+import { usersSeed } from "../data/usersSeed";
+
 // Servidor simulado sem dependências externas
 export function ServidorLogin({ username, password }) {
-  if (username === "admin" && password === "senha123") {
-    // Gerar token simples (string aleatória ou base64)
-    const token = btoa(`${username}:${Date.now()}`); 
-    return { ok: true, token };
+  const user = usersSeed.find(
+    (u) => u.username === username && u.password === password
+  );
+
+  if (user) {
+    const token = btoa(`${username}:${Date.now()}`); // Token simples
+    return { ok: true, token, role: user.role };
   } else {
     return { ok: false, message: "Credenciais inválidas." };
   }

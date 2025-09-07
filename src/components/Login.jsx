@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ServidorLogin } from "../components/Servidorlogin";
+import { ServidorLogin } from "../components/ServidorLogin"; // Corrigido "L" maiúsculo
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -14,8 +14,9 @@ export default function Login() {
 
     if (response.ok) {
       localStorage.setItem("token", response.token);
-      setMessage("Login bem-sucedido!");
-      navigate("/"); // redireciona para a página inicial
+      setMessage("✅ Login bem-sucedido!");
+      console.log("Usuário logado:", username); // Debug
+      navigate("/"); // Redireciona para a página inicial
     } else {
       setMessage(response.message);
     }
@@ -42,14 +43,22 @@ export default function Login() {
             className="w-full mb-4 border p-2 rounded placeholder-gray-400"
             required
           />
+
           {message && (
-            <p className={`mb-4 ${message.includes("bem") ? "text-green-500" : "text-red-500"}`}>
+            <p
+              className={`mb-4 text-center ${
+                message.includes("bem")
+                  ? "text-green-600 font-semibold"
+                  : "text-red-600 font-semibold"
+              }`}
+            >
               {message}
             </p>
           )}
+
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
           >
             Entrar
           </button>
