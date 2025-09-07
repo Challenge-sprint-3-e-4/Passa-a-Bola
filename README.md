@@ -1,7 +1,3 @@
-Perfeito 👌 Juntei o **README atual** com a explicação detalhada da API, endpoints e seed script que você pediu. Aqui está a versão consolidada:
-
----
-
 # ## Challenge FIAP 2025 – Parceria Passa a Bola
 
 ## 👥 Equipe
