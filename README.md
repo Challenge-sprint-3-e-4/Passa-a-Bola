@@ -1,4 +1,8 @@
-# ## Challenge FIAP 2025 – Parceria Passa a Bola
+Perfeito! Vou atualizar seu README para incluir o **script de seed** com o usuário admin, explicando seu papel na simulação do login, mantendo a tabela da API intacta e toda a estrutura atual.
+
+---
+
+# Challenge FIAP 2025 – Parceria Passa a Bola
 
 ## 👥 Equipe
 
@@ -11,7 +15,9 @@
 ---
 
 ## Link Vercel
-* https://passa-a-bola.vercel.app/
+
+* [https://passa-a-bola.vercel.app/](https://passa-a-bola.vercel.app/)
+
 ---
 
 ## 📖 Sobre o Projeto
@@ -41,6 +47,8 @@ passabola/
 │   ├─ assets/            # Imagens do projeto (logo, redes sociais, etc.)
 │   ├─ components/        # Componentes reutilizáveis (Header, Footer, Login, ServidorLogin)
 │   ├─ pages/             # Páginas da aplicação (Jogadoras, Blog, Clubes, Campeonatos, Escolinhas, Início)
+│   ├─ data/              # Arquivos de seed para simulação de dados
+│   │   └─ usersSeed.js   # Usuário admin para login
 │   ├─ App.jsx            # Componente principal com roteamento React Router
 │   └─ main.jsx           # Ponto de entrada da aplicação
 │
@@ -69,12 +77,34 @@ npm run dev
 
 ## 🔑 Informações de Login
 
-Para acessar o sistema, utilize as credenciais pré-definidas:
+Para acessar o sistema, utilize o usuário de teste **admin**:
 
 * **Usuário:** admin
 * **Senha:** senha123
 
 O login utiliza um token armazenado no `localStorage` para manter a sessão ativa. Após o login, os botões **Entrar** e **Cadastrar** desaparecem, e é possível encerrar a sessão clicando em **Sair**.
+
+---
+
+## 🌱 Script de Seed – Simulação de Usuários
+
+O projeto utiliza um **script de seed** (`usersSeed.js`) para simular usuários sem necessidade de backend real.
+
+### 📄 Exemplo de `usersSeed.js`
+
+```js
+export const usersSeed = [
+  { username: "admin", password: "senha123", role: "admin" }
+];
+```
+
+### 🔎 Como funciona
+
+* O componente **ServidorLogin.jsx** importa esse seed e valida o login do usuário.
+* Gera um token simples (base64) para manter a sessão via `localStorage`.
+* Permite testar funcionalidades de login e rotas protegidas sem um servidor real.
+
+⚠️ **Observação:** Esse seed é **apenas para prototipagem e testes**. Não deve ser usado em produção, pois as credenciais ficam expostas no front-end.
 
 ---
 
@@ -137,11 +167,9 @@ https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LATITUD
 
 ⚠️ **Observação:** a Overpass API é pública e pode ter limitações de uso.
 
-
-
 ---
 
-📌 Assim, o **Passa a Bola** combina **mapas interativos, autenticação, responsividade e integração com API pública** para entregar uma experiência completa e inovadora.
+📌 Assim, o **Passa a Bola** combina **mapas interativos, autenticação simulada com seed, responsividade e integração com API pública** para entregar uma experiência completa e inovadora.
 
 ---
 
