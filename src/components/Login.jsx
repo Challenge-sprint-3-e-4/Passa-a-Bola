@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ServidorLogin } from "../components/ServidorLogin"; // Corrigido "L" maiúsculo
+import { ServidorLogin } from "../components/Servidorlogin"; 
 
 export default function Login() {
   const [username, setUsername] = useState("");
