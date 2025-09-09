@@ -1,7 +1,3 @@
-Perfeito! Vou atualizar seu README para incluir o **script de seed** com o usuário admin, explicando seu papel na simulação do login, mantendo a tabela da API intacta e toda a estrutura atual.
-
----
-
 # Challenge FIAP 2025 – Parceria Passa a Bola
 
 ## 👥 Equipe
