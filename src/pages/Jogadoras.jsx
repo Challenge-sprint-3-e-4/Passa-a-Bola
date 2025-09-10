@@ -44,8 +44,9 @@ const jogadorasDuplicadas = [...jogadoras, ...jogadoras];
 
 export default function Jogadoras() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold text-gray-800 mb-10">Conheça as atletas que vão e estão fazendo diferença no futebol feminino</h1>
+    <main className="flex flex-col items-center min-h-screen bg-gray-100 pt-20 pb-16">
+      <h1 className="text-3xl font-bold text-gray-600 mb-10">
+  Conheça as atletas que vão e estão fazendo diferença no futebol feminino</h1>
       {/* Primeira camada */}
       <div className="flex flex-wrap justify-center gap-8 mb-8">
         {jogadorasDuplicadas.slice(0, 3).map((jogadora, idx) => (
