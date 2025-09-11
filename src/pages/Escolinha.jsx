@@ -22,8 +22,8 @@ export default function Escolinhas() {
         const { latitude, longitude } = pos.coords;
         setPosition([latitude, longitude]);
 
-        // Consulta Overpass API (escolinhas perto)
-        const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,${latitude},${longitude})[sport=soccer];out;`;
+        // Consulta Overpass API (escolinhas até 100 km de distância)
+const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:100000,${latitude},${longitude})[sport=soccer];out;`;
 
         fetch(overpassUrl)
           .then((res) => res.json())
