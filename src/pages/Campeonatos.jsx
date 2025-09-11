@@ -157,7 +157,7 @@ export default function Campeonatos() {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white font-semibold py-2 rounded hover:bg-blue-600"
+              className="w-full bg-purple-500 text-white font-semibold py-2 rounded hover:bg-blue-600"
             >
               Inscrever
             </button>
