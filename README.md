@@ -150,13 +150,13 @@ A página **Escolinhas** utiliza o **Leaflet** para renderizar mapas e a **Overp
 Exemplo de consulta utilizada:
 
 ```http
-https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LATITUDE,LONGITUDE)[sport=soccer];out;
+https://overpass-api.de/api/interpreter?data=[out:json];node(around:100000,LATITUDE,LONGITUDE)[sport=soccer];out;
 ```
 
 ### 📑 Detalhamento dos parâmetros
 
 * **`[out:json]`** → Define que a resposta será em JSON.
-* **`node(around:3000, LAT, LON)`** → Busca nós (pontos) em um raio de 3 km.
+* **`node(around:3000, LAT, LON)`** → Busca nós (pontos) em um raio de 100 km.
 * **`[sport=soccer]`** → Filtra apenas locais relacionados a futebol.
 * **`out;`** → Finaliza a consulta.
 
