@@ -131,6 +131,43 @@ export const usersSeed = [
 ---
 
 
+## 🌍 Funcionalidade de Escolinhas – Overpass API
+
+A página **Escolinhas** utiliza o **Leaflet** para renderizar mapas e a **Overpass API** para consultar escolinhas de futebol próximas ao usuário.
+
+### 🔎 Como funciona:
+
+1. O usuário clica em **"Procurar perto de mim"**.
+2. O navegador solicita permissão de geolocalização.
+3. A aplicação consulta a Overpass API com a latitude e longitude do usuário.
+4. Escolinhas (pontos com `sport=soccer`) em um raio de 3 km são exibidas no mapa.
+5. Alertas mostram se foram encontradas ou não escolinhas próximas.
+
+---
+
+## 📡 Endpoints da API
+
+Exemplo de consulta utilizada:
+
+```http
+https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LATITUDE,LONGITUDE)[sport=soccer];out;
+```
+
+### 📑 Detalhamento dos parâmetros
+
+* **`[out:json]`** → Define que a resposta será em JSON.
+* **`node(around:3000, LAT, LON)`** → Busca nós (pontos) em um raio de 3 km.
+* **`[sport=soccer]`** → Filtra apenas locais relacionados a futebol.
+* **`out;`** → Finaliza a consulta.
+
+### Tabela de Endpoints
+
+| Método | Endpoint                                                                                               | Descrição                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| `GET`  | `https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LAT,LON)[sport=soccer];out;` | Retorna todas as escolinhas de futebol (pontos com `sport=soccer`) em um raio de 3 km da posição atual do usuário. |
+
+⚠️ **Observação:** a Overpass API é pública e pode ter limitações de uso.
+
 
 ## 💡 Observações Finais
 
@@ -138,4 +175,8 @@ export const usersSeed = [
 * A plataforma é **simulada**, com seed de usuários e dados estáticos, mas estruturada para integração futura com **backend real**.
 * O uso de **Tailwind CSS, React Router, Leaflet e SweetAlert2** garante interatividade e design moderno.
 
-```
+
+---
+📌 Assim, o **Passa a Bola** combina **mapas interativos, autenticação simulada com seed, responsividade e integração com API pública** para entregar uma experiência completa e inovadora.
+
+
