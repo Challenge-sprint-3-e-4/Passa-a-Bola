@@ -10,19 +10,22 @@
 
 ---
 
-## Link Vercel
+## 🌐 Deploy
+
+O projeto está hospedado no **Vercel**, garantindo fácil acesso e performance otimizada:
 
 * [https://passa-a-bola.vercel.app/](https://passa-a-bola.vercel.app/)
+
+
 
 ---
 
 ## 📖 Sobre o Projeto
 
-O **Passa a Bola** é uma plataforma que foi desenvolvida para solucionar questões levantadas pela Empresa Passa a Bola.
-O projeto foi desenvolvido em **React** com **Tailwind CSS** e utiliza **React Router** para roteamento, garantindo uma aplicação leve, organizada e performática.
+O **Passa a Bola** é uma plataforma desenvolvida para solucionar questões levantadas pela Empresa Passa a Bola.  
+O projeto foi construído com **React** e **Tailwind CSS**, utilizando **React Router** para roteamento, garantindo uma aplicação leve, organizada e performática.
 
-O sistema possui funcionalidades de login com validação de credenciais e controle de sessão, além de **responsividade** e um design baseado nas cores do projeto.
-Na página **Escolinhas**, foi implementado um **mapa interativo** que localiza escolinhas de futebol próximas ao usuário, utilizando a **Overpass API** (OpenStreetMap).
+O sistema possui funcionalidades de login com validação de credenciais e controle de sessão, além de **responsividade**.
 
 ---
 
@@ -37,6 +40,7 @@ Na página **Escolinhas**, foi implementado um **mapa interativo** que localiza 
 ## 📂 Estrutura de Pastas
 
 ```
+
 passabola/
 │
 ├─ src/
@@ -51,7 +55,8 @@ passabola/
 ├─ package.json
 ├─ vite.config.js
 └─ index.html
-```
+
+````
 
 ---
 
@@ -61,7 +66,7 @@ passabola/
 
 ```bash
 npm install
-```
+````
 
 2. **Rodar o projeto em desenvolvimento:**
 
@@ -78,7 +83,8 @@ Para acessar o sistema, utilize o usuário de teste **admin**:
 * **Usuário:** admin
 * **Senha:** senha123
 
-O login utiliza um token armazenado no `localStorage` para manter a sessão ativa. Após o login, os botões **Entrar** e **Cadastrar** desaparecem, e é possível encerrar a sessão clicando em **Sair**.
+O login utiliza um token armazenado no `localStorage` para manter a sessão ativa.
+Após o login, os botões **Entrar** e **Cadastrar** desaparecem, e é possível encerrar a sessão clicando em **Sair**.
 
 ---
 
@@ -94,13 +100,7 @@ export const usersSeed = [
 ];
 ```
 
-### 🔎 Como funciona
-
-* O componente **ServidorLogin.jsx** importa esse seed e valida o login do usuário.
-* Gera um token simples (base64) para manter a sessão via `localStorage`.
-* Permite testar funcionalidades de login e rotas protegidas sem um servidor real.
-
-⚠️ **Observação:** Esse seed é **apenas para prototipagem e testes**. Não deve ser usado em produção, pois as credenciais ficam expostas no front-end.
+⚠️ **Observação:** Esse seed é apenas para prototipagem e testes.
 
 ---
 
@@ -117,55 +117,26 @@ export const usersSeed = [
 
 ## ✨ Funcionalidades Atuais
 
-* Login e controle de sessão
-* Header e Footer responsivos
-* Menu hamburguer para telas pequenas
-* Rotas protegidas por login
-* Redirecionamento automático para login caso usuário não esteja autenticado
-* Página **Escolinhas** com mapa interativo (OpenStreetMap + Overpass API)
+* **Login e controle de sessão** – autenticação de usuários e proteção de rotas.
+* **Header e Footer responsivos** – menu hamburguer para telas pequenas.
+* **Página Escolinhas** – mapa interativo (OpenStreetMap + Overpass API) que mostra escolinhas próximas ao usuário.
+* **Blog** – publicação de histórias inspiradoras com título, categoria, conteúdo e upload de imagem. Cards padronizados, feedback visual com SweetAlert2.
+* **Jogadoras** – perfil das atletas com informações de jogos, gols, assistências e foto. Layout responsivo em cards padronizados.
+* **Campeonatos** – cadastro e visualização de campeonatos, contagem de gols, placares em tempo real e interface amigável de administração.
+* **Clubes Parceiros** – grid responsivo de clubes, com card de chamada para solicitar parceria.
+* **Redirecionamento automático** para login caso usuário não esteja autenticado.
+* **Design e cores** consistentes com a paleta do projeto.
+* **Responsividade total** em diferentes tamanhos de tela.
 
 ---
 
-## 🌍 Funcionalidade de Escolinhas – Overpass API
 
-A página **Escolinhas** utiliza o **Leaflet** para renderizar mapas e a **Overpass API** para consultar escolinhas de futebol próximas ao usuário.
 
-### 🔎 Como funciona:
+## 💡 Observações Finais
 
-1. O usuário clica em **"Procurar perto de mim"**.
-2. O navegador solicita permissão de geolocalização.
-3. A aplicação consulta a Overpass API com a latitude e longitude do usuário.
-4. Escolinhas (pontos com `sport=soccer`) em um raio de 3 km são exibidas no mapa.
-5. Alertas mostram se foram encontradas ou não escolinhas próximas.
+* Toda a aplicação é construída para ser **responsiva**, acessível e visualmente consistente.
+* A plataforma é **simulada**, com seed de usuários e dados estáticos, mas estruturada para integração futura com **backend real**.
+* O uso de **Tailwind CSS, React Router, Leaflet e SweetAlert2** garante interatividade e design moderno.
 
----
-
-## 📡 Endpoints da API
-
-Exemplo de consulta utilizada:
-
-```http
-https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LATITUDE,LONGITUDE)[sport=soccer];out;
 ```
-
-### 📑 Detalhamento dos parâmetros
-
-* **`[out:json]`** → Define que a resposta será em JSON.
-* **`node(around:3000, LAT, LON)`** → Busca nós (pontos) em um raio de 3 km.
-* **`[sport=soccer]`** → Filtra apenas locais relacionados a futebol.
-* **`out;`** → Finaliza a consulta.
-
-### Tabela de Endpoints
-
-| Método | Endpoint                                                                                               | Descrição                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| `GET`  | `https://overpass-api.de/api/interpreter?data=[out:json];node(around:3000,LAT,LON)[sport=soccer];out;` | Retorna todas as escolinhas de futebol (pontos com `sport=soccer`) em um raio de 3 km da posição atual do usuário. |
-
-⚠️ **Observação:** a Overpass API é pública e pode ter limitações de uso.
-
----
-
-📌 Assim, o **Passa a Bola** combina **mapas interativos, autenticação simulada com seed, responsividade e integração com API pública** para entregar uma experiência completa e inovadora.
-
----
 
