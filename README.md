@@ -139,4 +139,3 @@ export const usersSeed = [
 * O uso de **Tailwind CSS, React Router, Leaflet e SweetAlert2** garante interatividade e design moderno.
 
 ```
-
