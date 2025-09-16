@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import img4 from "../assets/jogadoras.jpg";
 
 export default function Campeonatos() {

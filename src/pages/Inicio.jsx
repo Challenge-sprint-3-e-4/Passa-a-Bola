@@ -1,4 +1,3 @@
-import React from "react";
 import img1 from "../assets/img1.PNG";
 
 export default function Inicio() {

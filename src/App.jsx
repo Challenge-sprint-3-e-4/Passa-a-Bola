@@ -1,5 +1,5 @@
-import React from "react";
 import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 // Componentes
 import Header from "./components/Header";
@@ -22,8 +22,7 @@ const isLoggedIn = () => {
 export default function App() {
   const navigate = useNavigate();
 
-  // Se o usuário não estiver logado e tentar acessar qualquer rota protegida, redireciona para login
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isLoggedIn() && window.location.pathname !== "/login") {
       navigate("/login");
     }
