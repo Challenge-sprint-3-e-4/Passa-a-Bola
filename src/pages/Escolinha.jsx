@@ -23,7 +23,7 @@ export default function Escolinhas() {
         setPosition([latitude, longitude]);
 
         // Consulta Overpass API (escolinhas até 100 km de distância)
-const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:100000,${latitude},${longitude})[sport=soccer];out;`;
+        const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];node(around:100000,${latitude},${longitude})[sport=soccer];out;`;
 
         fetch(overpassUrl)
           .then((res) => res.json())
@@ -56,13 +56,17 @@ const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];nod
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+    <main
+      role="main"
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6"
+    >
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
         Escolinhas de Futebol
       </h1>
 
       <button
         onClick={handleSearchNearby}
+        aria-label="Procurar escolinhas de futebol perto de mim"
         className="mb-6 px-6 py-3 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
       >
         Procurar perto de mim
@@ -84,8 +88,11 @@ const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];nod
             <Marker
               key={index}
               position={[el.lat, el.lon]}
+              aria-label="Marcador de escolinha de futebol"
             >
-              <Popup>⚽ Escolinha encontrada!</Popup>
+              <Popup aria-label="Informação da escolinha de futebol">
+                ⚽ Escolinha encontrada!
+              </Popup>
             </Marker>
           ))}
         </MapContainer>
