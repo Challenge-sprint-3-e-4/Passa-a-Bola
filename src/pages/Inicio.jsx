@@ -2,7 +2,10 @@ import img1 from "../assets/img1.PNG";
 
 export default function Inicio() {
   return (
-    <main className="relative w-full h-[350px] md:h-[400px] lg:h-[550px] overflow-hidden">
+    <main
+      role="main"
+      className="relative w-full h-[350px] md:h-[400px] lg:h-[550px] overflow-hidden"
+    >
       {/* Imagem principal */}
       <img
         src={img1}
