@@ -104,7 +104,7 @@ export default function Campeonatos() {
           <div className="bg-opacity-80 p-8 rounded mt-0">
             <button
               type="button"
-              className="px-12 py-4 text-xl bg-[var(--color-roxo)] text-white rounded hover:bg-[var(--color-verde)] mt-60"
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--color-roxo)] to-[var(--color-verde)] text-white text-lg font-bold shadow-md hover:scale-105 transition"
               onClick={() => setMostrarCadastro(true)}
             >
               Clique aqui
