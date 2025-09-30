@@ -29,6 +29,8 @@ const Parceiros = () => {
         {cores.map((color, index) => (
           <div
             key={index}
+            role="img"
+            aria-label={`Avatar do clube parceiro ${index + 1}`}
             className={`w-16 h-16 flex items-center justify-center rounded-full bg-[var(--color-${color})] text-white font-bold shadow-md`}
           >
             AB
