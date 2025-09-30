@@ -76,14 +76,18 @@ const Blog = () => {
   return (
     <div className="flex flex-col items-center">
       {/* Faixa colorida com título */}
-      <div className="w-full h-20 bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] flex flex-col justify-center items-center shadow-md">
+      <header className="w-full h-20 bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] flex flex-col justify-center items-center shadow-md">
         <h1 className="text-3xl font-bold text-white">Histórias que inspiram</h1>
-      </div>
+      </header>
 
-      <div className="p-6 max-w-6xl w-full">
+      <main className="p-6 max-w-6xl w-full">
         {/* Formulário */}
-        <div className="bg-white shadow-md rounded-xl p-6 mb-10 flex flex-col gap-4">
+        <section className="bg-white shadow-md rounded-xl p-6 mb-10 flex flex-col gap-4" aria-labelledby="form-titulo">
+          <h2 id="form-titulo" className="sr-only">Formulário de publicação de história</h2>
+
+          <label htmlFor="tituloHistoria" className="sr-only">Título da História</label>
           <input
+            id="tituloHistoria"
             type="text"
             value={tituloHistoria}
             onChange={(e) => setTituloHistoria(e.target.value)}
@@ -91,7 +95,9 @@ const Blog = () => {
             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[var(--color-roxo)]"
           />
 
+          <label htmlFor="categoriaHistoria" className="sr-only">Categoria da História</label>
           <select
+            id="categoriaHistoria"
             value={categoriaHistoria}
             onChange={(e) => setCategoriaHistoria(e.target.value)}
             className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-[var(--color-roxo)]"
@@ -102,7 +108,9 @@ const Blog = () => {
             <option value="Curiosidade">Curiosidade</option>
           </select>
 
+          <label htmlFor="novaHistoria" className="sr-only">Conteúdo da História</label>
           <textarea
+            id="novaHistoria"
             value={novaHistoria}
             onChange={(e) => setNovaHistoria(e.target.value)}
             placeholder="Compartilhe sua história..."
@@ -122,6 +130,7 @@ const Blog = () => {
             </label>
 
             <button
+              type="button"
               onClick={adicionarHistoria}
               className="px-6 py-2 rounded-lg bg-[var(--color-roxo)] text-white font-semibold hover:opacity-90"
             >
@@ -132,16 +141,16 @@ const Blog = () => {
           {imagemUpload && (
             <img
               src={URL.createObjectURL(imagemUpload)}
-              alt="Pré-visualização"
+              alt="Pré-visualização da história"
               className="max-h-40 rounded-lg border mt-3"
             />
           )}
-        </div>
+        </section>
 
         {/* Grid de Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-label="Lista de histórias">
           {posts.map((post) => (
-            <div
+            <article
               key={post.id}
               className="flex flex-col h-[450px] bg-white rounded-xl border shadow-sm overflow-hidden"
             >
@@ -184,7 +193,10 @@ const Blog = () => {
                   <div className="flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-rosa)] text-white font-bold">
                     {post.autor}
                   </div>
-                  <button className="flex items-center gap-1 text-[var(--color-roxo)] font-semibold hover:underline">
+                  <button
+                    type="button"
+                    className="flex items-center gap-1 text-[var(--color-roxo)] font-semibold hover:underline"
+                  >
                     Leia mais
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -203,10 +215,10 @@ const Blog = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
   );
 };
