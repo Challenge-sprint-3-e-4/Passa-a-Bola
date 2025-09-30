@@ -24,10 +24,15 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="p-8 bg-white rounded-lg shadow-md w-full max-w-sm">
+      <main className="p-8 bg-white rounded-lg shadow-md w-full max-w-sm" role="main">
         <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
         <form onSubmit={handleLogin}>
+          
+          <label htmlFor="username" className="sr-only">
+            Usuário
+          </label>
           <input
+            id="username"
             type="text"
             placeholder="Usuário: admin"
             value={username}
@@ -35,7 +40,12 @@ export default function Login() {
             className="w-full mb-4 border p-2 rounded placeholder-gray-400"
             required
           />
+
+          <label htmlFor="password" className="sr-only">
+            Senha
+          </label>
           <input
+            id="password"
             type="password"
             placeholder="Senha: senha123"
             value={password}
@@ -46,6 +56,7 @@ export default function Login() {
 
           {message && (
             <p
+              role="alert"
               className={`mb-4 text-center ${
                 message.includes("bem")
                   ? "text-green-600 font-semibold"
@@ -63,7 +74,7 @@ export default function Login() {
             Entrar
           </button>
         </form>
-      </div>
+      </main>
     </div>
   );
 }
