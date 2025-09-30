@@ -39,7 +39,7 @@ export default function Header() {
       <nav className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <img src={Logo} alt="Logo" className="h-10 w-10" />
+          <img src={Logo} alt="Passa a Bola" className="h-10 w-10" />
           <h1 className="text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
             PASSA A BOLA
           </h1>
@@ -47,6 +47,7 @@ export default function Header() {
 
         {/* Links */}
         <ul
+          id="menu-principal"
           className={`lg:flex lg:items-center lg:gap-6 text-gray-600 font-medium transition-all duration-300
             ${isOpen ? "block absolute top-16 right-0 w-56 bg-white shadow-md p-4" : "hidden"} lg:static lg:block`}
         >
@@ -110,6 +111,7 @@ export default function Header() {
               <button
                 onClick={handleLogout}
                 className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                aria-label="Encerrar sessão"
               >
                 Sair
               </button>
@@ -138,6 +140,7 @@ export default function Header() {
             <button
               onClick={handleLogout}
               className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
+              aria-label="Encerrar sessão"
             >
               Sair
             </button>
@@ -148,6 +151,9 @@ export default function Header() {
         <button
           className="lg:hidden ml-auto p-2 rounded-md border border-gray-300"
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-controls="menu-principal"
+          aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
         >
           {isOpen ? "✖" : "☰"}
         </button>
