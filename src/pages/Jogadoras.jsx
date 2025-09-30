@@ -42,32 +42,10 @@ const jogadoras = [
 const jogadorasDuplicadas = [...jogadoras, ...jogadoras];
 
 export default function Jogadoras() {
-  // Cálculos simples para o dashboard
   const totalJogadoras = jogadorasDuplicadas.length;
-  const totalGols = jogadorasDuplicadas.reduce((acc, j) => acc + j.gols, 0);
-  const totalAssistencias = jogadorasDuplicadas.reduce((acc, j) => acc + j.assistencias, 0);
 
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-100 pt-20 pb-16">
-
-      {/* Dashboard */}
-      <section
-        className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
-        aria-label="Dashboard de estatísticas das jogadoras"
-      >
-        <div className="bg-[var(--color-roxo)] text-white rounded-2xl p-6 shadow-md text-center">
-          <h3 className="text-xl font-semibold mb-2">Total de Jogadoras</h3>
-          <p className="text-3xl font-bold">{totalJogadoras}</p>
-        </div>
-        <div className="bg-[var(--color-rosa)] text-white rounded-2xl p-6 shadow-md text-center">
-          <h3 className="text-xl font-semibold mb-2">Total de Gols</h3>
-          <p className="text-3xl font-bold">{totalGols}</p>
-        </div>
-        <div className="bg-[var(--color-verde)] text-white rounded-2xl p-6 shadow-md text-center">
-          <h3 className="text-xl font-semibold mb-2">Total de Assistências</h3>
-          <p className="text-3xl font-bold">{totalAssistencias}</p>
-        </div>
-      </section>
 
       {/* Título principal */}
       <h1 className="text-3xl font-bold text-gray-600 mb-10 text-center">
@@ -96,7 +74,7 @@ export default function Jogadoras() {
       </section>
 
       {/* Segunda camada */}
-      <section className="flex flex-wrap justify-center gap-8" aria-label="Segunda camada de jogadoras">
+      <section className="flex flex-wrap justify-center gap-8 mb-12" aria-label="Segunda camada de jogadoras">
         {jogadorasDuplicadas.slice(3, 6).map((jogadora, idx) => (
           <article key={idx + 3} className="bg-white rounded-2xl shadow-lg p-8 w-96 flex flex-col items-center">
             <img
@@ -115,6 +93,16 @@ export default function Jogadoras() {
           </article>
         ))}
       </section>
+
+      {/* Dashboard final */}
+      <section
+        className="w-full max-w-5xl bg-[var(--color-roxo)] text-white rounded-2xl p-6 shadow-md text-center"
+        aria-label="Total de jogadoras"
+      >
+        <h3 className="text-xl font-semibold mb-2">Total de Jogadoras</h3>
+        <p className="text-3xl font-bold">{totalJogadoras}</p>
+      </section>
+
     </main>
   );
 }
