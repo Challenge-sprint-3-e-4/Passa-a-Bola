@@ -44,15 +44,17 @@ const jogadorasDuplicadas = [...jogadoras, ...jogadoras];
 export default function Jogadoras() {
   return (
     <main className="flex flex-col items-center min-h-screen bg-gray-100 pt-20 pb-16">
-      <h1 className="text-3xl font-bold text-gray-600 mb-10">
-  Conheça as atletas que vão e estão fazendo diferença no futebol feminino</h1>
+      <h1 className="text-3xl font-bold text-gray-600 mb-10 text-center">
+        Conheça as atletas que vão e estão fazendo diferença no futebol feminino
+      </h1>
+
       {/* Primeira camada */}
-      <div className="flex flex-wrap justify-center gap-8 mb-8">
+      <section className="flex flex-wrap justify-center gap-8 mb-8" aria-label="Primeira camada de jogadoras">
         {jogadorasDuplicadas.slice(0, 3).map((jogadora, idx) => (
-          <div key={idx} className="bg-white rounded-2xl shadow-lg p-8 w-96 flex flex-col items-center">
+          <article key={idx} className="bg-white rounded-2xl shadow-lg p-8 w-96 flex flex-col items-center">
             <img
               src={jogadora.imagem}
-              alt={jogadora.nome}
+              alt={`Foto de ${jogadora.nome}`}
               className="w-36 h-36 object-cover rounded-full mb-4 border-4 border-purple-500"
             />
             <h2 className="text-2xl font-semibold text-purple-700 mb-2">{jogadora.nome}</h2>
@@ -63,16 +65,17 @@ export default function Jogadoras() {
             <p className="text-gray-700 mb-1"><strong>Jogos:</strong> {jogadora.jogos}</p>
             <p className="text-gray-700 mb-3"><strong>Assistências:</strong> {jogadora.assistencias}</p>
             <p className="text-gray-600 text-center">{jogadora.descricao}</p>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
+
       {/* Segunda camada */}
-      <div className="flex flex-wrap justify-center gap-8">
+      <section className="flex flex-wrap justify-center gap-8" aria-label="Segunda camada de jogadoras">
         {jogadorasDuplicadas.slice(3, 6).map((jogadora, idx) => (
-          <div key={idx + 3} className="bg-white rounded-2xl shadow-lg p-8 w-96 flex flex-col items-center">
+          <article key={idx + 3} className="bg-white rounded-2xl shadow-lg p-8 w-96 flex flex-col items-center">
             <img
               src={jogadora.imagem}
-              alt={jogadora.nome}
+              alt={`Foto de ${jogadora.nome}`}
               className="w-36 h-36 object-cover rounded-full mb-4 border-4 border-purple-500"
             />
             <h2 className="text-2xl font-semibold text-purple-700 mb-2">{jogadora.nome}</h2>
@@ -83,9 +86,9 @@ export default function Jogadoras() {
             <p className="text-gray-700 mb-1"><strong>Jogos:</strong> {jogadora.jogos}</p>
             <p className="text-gray-700 mb-3"><strong>Assistências:</strong> {jogadora.assistencias}</p>
             <p className="text-gray-600 text-center">{jogadora.descricao}</p>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
     </main>
   );
 }
