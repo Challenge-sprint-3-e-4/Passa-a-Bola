@@ -18,10 +18,8 @@ export default function Campeonatos() {
   const [posicao, setPosicao] = useState("");
   const [mensagem, setMensagem] = useState("");
 
-  // Padrão de vagas
   const PADRAO = { goleira: 1, defensora: 2, meio: 2, atacante: 2 };
 
-  // Criar novo time automático
   const criarTime = () => {
     const nomeTime = `Time ${times.length + 1}`;
     setTimes((prev) => [...prev, nomeTime]);
@@ -31,16 +29,14 @@ export default function Campeonatos() {
       meio: [...prev.meio, PADRAO.meio],
       atacante: [...prev.atacante, PADRAO.atacante]
     }));
-    return times.length; // retorna índice do novo time
+    return times.length;
   };
 
-  // Inscrever jogadora
   const handleCadastro = (e) => {
     e.preventDefault();
     let timeIndex = -1;
     let vagasTemp = { ...vagas };
 
-    // Verifica vagas nos times existentes
     for (let i = 0; i < times.length; i++) {
       if (posicao === "Goleira" && vagasTemp.goleira[i] > 0) {
         vagasTemp.goleira[i]--;
@@ -61,7 +57,6 @@ export default function Campeonatos() {
       }
     }
 
-    // Se não encontrou vaga → cria novo time
     if (timeIndex === -1) {
       timeIndex = criarTime();
       vagasTemp = {
@@ -83,12 +78,10 @@ export default function Campeonatos() {
     ]);
     setVagas(vagasTemp);
 
-    // Mensagem final
     setMensagem(
       `Você está no ${timeEscolhido} em posição de ${posicao}. Aguarde um tempo e entraremos em contato com você.`
     );
 
-    // Reset campos
     setNome("");
     setCamisa("");
     setPosicao("");
@@ -97,7 +90,6 @@ export default function Campeonatos() {
   return (
     <>
       {!mostrarCadastro ? (
-        // Tela inicial de campeonatos
         <main
           className="flex flex-col items-center justify-center h-screen bg-gray-100 bg-cover bg-center relative"
           style={{ backgroundImage: `url(${img4})` }}
@@ -111,7 +103,8 @@ export default function Campeonatos() {
           </h2>
           <div className="bg-opacity-80 p-8 rounded mt-0">
             <button
-             className="px-12 py-4 text-xl bg-[var(--color-roxo)] text-white rounded hover:bg-[var(--color-verde)] mt-60"
+              type="button"
+              className="px-12 py-4 text-xl bg-[var(--color-roxo)] text-white rounded hover:bg-[var(--color-verde)] mt-60"
               onClick={() => setMostrarCadastro(true)}
             >
               Clique aqui
@@ -119,13 +112,14 @@ export default function Campeonatos() {
           </div>
         </main>
       ) : (
-        // Tela de cadastro
-        <div className="p-6 max-w-md mx-auto bg-gray-100 rounded-2xl shadow-md mt-10">
+        <section className="p-6 max-w-md mx-auto bg-gray-100 rounded-2xl shadow-md mt-10">
           <h1 className="text-xl font-bold mb-4">Inscrição de Jogadora</h1>
 
           <form onSubmit={handleCadastro} className="space-y-3">
+            <label htmlFor="nomeJogadora" className="sr-only">Nome da jogadora</label>
             <input
               type="text"
+              id="nomeJogadora"
               placeholder="Nome da jogadora"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
@@ -133,8 +127,10 @@ export default function Campeonatos() {
               className="w-full p-2 border rounded"
             />
 
+            <label htmlFor="numeroCamisa" className="sr-only">Número da camiseta</label>
             <input
               type="number"
+              id="numeroCamisa"
               placeholder="Número da camiseta"
               value={camisa}
               onChange={(e) => setCamisa(e.target.value)}
@@ -142,7 +138,9 @@ export default function Campeonatos() {
               className="w-full p-2 border rounded"
             />
 
+            <label htmlFor="posicao" className="sr-only">Selecione a posição</label>
             <select
+              id="posicao"
               value={posicao}
               onChange={(e) => setPosicao(e.target.value)}
               required
@@ -164,18 +162,19 @@ export default function Campeonatos() {
           </form>
 
           {mensagem && (
-            <div className="mt-4 p-3 bg-green-200 text-green-800 rounded">
+            <div role="status" className="mt-4 p-3 bg-green-200 text-green-800 rounded">
               {mensagem}
             </div>
           )}
 
           <button
+            type="button"
             onClick={() => setMostrarCadastro(false)}
             className="mt-4 w-full bg-gray-500 text-white py-2 rounded hover:bg-gray-600"
           >
             Voltar
           </button>
-        </div>
+        </section>
       )}
     </>
   );
