@@ -4,7 +4,7 @@ import jogadoras2 from "../assets/jogadoras2.jpg";
 
 const Hero = () => {
   return (
-        <section className="relative h-[calc(100vh-22rem)] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
           {/* Background Image */}
           <img 
             src={jogadoras2} 
