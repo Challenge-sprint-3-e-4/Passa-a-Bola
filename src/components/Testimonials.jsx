@@ -1,4 +1,10 @@
 import { Quote } from "lucide-react";
+import mulher1 from "../assets/mulher1.jpg";
+import mulher2 from "../assets/mulher2.png";
+import homem1 from "../assets/homem1.png";
+
+
+
 
 const Testimonials = () => {
   const testimonials = [
@@ -7,21 +13,21 @@ const Testimonials = () => {
       name: "Maria Silva",
       role: "Atacante - Clube São Paulo FC",
       quote: "O Passa a Bola mudou minha carreira. Em 2 meses recebi propostas de 5 clubes diferentes. Hoje jogo profissionalmente!",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop"
+      image: mulher1
     },
     {
       id: 2,
       name: "João Santos",
       role: "Diretor Esportivo - Clube Vitória",
       quote: "Encontramos talentos incríveis aqui. A plataforma facilita muito nosso trabalho de scout e contratação de atletas.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop"
+      image: homem1
     },
     {
       id: 3,
       name: "Fernanda Costa",
       role: "Meio-campo - Seleção Sub-20",
       quote: "Além de encontrar meu clube, conectei com outras jogadoras e criamos uma rede de apoio incrível. Gratidão!",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop"
+      image: mulher2
     }
   ];
 
@@ -29,10 +35,10 @@ const Testimonials = () => {
     <section className="py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            O que dizem sobre <span className="gradient-text">nós</span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 ">
+            O que dizem sobre <span className="bg-gradient-to-br from-purple-700  to-pink-500 bg-clip-text text-transparent ">nós</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto"> 
             Histórias reais de jogadoras e clubes que transformaram suas carreiras
           </p>
         </div>
@@ -45,8 +51,8 @@ const Testimonials = () => {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Quote Icon */}
-              <div className="absolute -top-4 right-8 w-12 h-12 rounded-full gradient-primary flex items-center justify-center shadow-lg">
-                <Quote className="h-6 w-6 text-white" />
+              <div className="absolute -top-4 right-8 w-12 h-12 rounded-full gradient-primary flex items-center justify-center shadow-lg ">
+                <Quote className="h-6 w-6 text-black" />
               </div>
 
               {/* Content */}

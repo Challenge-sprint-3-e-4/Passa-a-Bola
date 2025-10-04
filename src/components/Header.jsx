@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "../components/ui/button";
 import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 import Logo from "../assets/logo.png";
@@ -18,27 +17,32 @@ const Header = () => {
     { name: "Escolinhas", path: "/escolinhas" },
   ];
 
-  // Atualiza login caso mude localStorage em outra aba
   useEffect(() => {
-  const handleAuthChange = () => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  };
+    const handleAuthChange = () => setIsLoggedIn(!!localStorage.getItem("token"));
 
-  window.addEventListener("storage", handleAuthChange);
-  window.addEventListener("authChange", handleAuthChange);
+    window.addEventListener("storage", handleAuthChange);
+    window.addEventListener("authChange", handleAuthChange);
 
-  return () => {
-    window.removeEventListener("storage", handleAuthChange);
-    window.removeEventListener("authChange", handleAuthChange);
-  };
-}, []);
-
+    return () => {
+      window.removeEventListener("storage", handleAuthChange);
+      window.removeEventListener("authChange", handleAuthChange);
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
     navigate("/login");
   };
+
+  const buttonBaseClasses =
+    "px-4 py-2 rounded-lg font-semibold transition-opacity duration-200";
+
+  const gradientButton =
+    `${buttonBaseClasses} text-white bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90`;
+
+  const outlineButton =
+    `${buttonBaseClasses} border border-gray-400 text-[var(--color-roxo)] hover:bg-gray-100`;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border h-auto md:h-16">
@@ -47,12 +51,9 @@ const Header = () => {
           {/* Logo + Texto */}
           <Link
             to="/"
-            className="flex flex-col md:flex-row items-center gap-2 transition-smooth hover:opacity-80"
+            className="flex flex-col md:flex-row items-center gap-2 transition-opacity duration-200 hover:opacity-80"
           >
-            {/* Logo */}
             <img src={Logo} alt="Passa a Bola" className="h-8 w-auto md:h-16" />
-
-            {/* Texto */}
             <span className="text-lg md:text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
               PASSA A BOLA
             </span>
@@ -75,24 +76,15 @@ const Header = () => {
           <div className="hidden md:flex gap-3">
             {!isLoggedIn ? (
               <>
-                <Link
-                  to="/login"
-                  className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100"
-                >
+                <Link to="/login" className={outlineButton}>
                   Entrar
                 </Link>
-                <Link
-                  to="/cadastro"
-                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-                >
+                <Link to="/cadastro" className={gradientButton}>
                   Cadastrar
                 </Link>
               </>
             ) : (
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-              >
+              <button onClick={handleLogout} className={gradientButton}>
                 Sair
               </button>
             )}
@@ -128,14 +120,14 @@ const Header = () => {
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
+                    className={`${outlineButton} text-center`}
                   >
                     Entrar
                   </Link>
                   <Link
                     to="/cadastro"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                    className={`${gradientButton} text-center`}
                   >
                     Cadastrar
                   </Link>
@@ -143,7 +135,7 @@ const Header = () => {
               ) : (
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                  className={`${gradientButton} text-center`}
                 >
                   Sair
                 </button>

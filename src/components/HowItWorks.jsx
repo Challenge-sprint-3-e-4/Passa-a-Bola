@@ -30,12 +30,15 @@ const HowItWorks = () => {
 
   return (
     <section className="py-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+      <div className="container mx-auto px-4 ">
+        <div className="text-center mb-16 ">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Como <span className="gradient-text">Funciona</span>
+            Como{" "}
+            <span className="bg-gradient-to-br from-purple-700  to-pink-500 bg-clip-text text-transparent">
+              Funciona
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto ">
             Em 4 passos simples, conectamos sonhos com oportunidades reais
           </p>
         </div>
@@ -49,7 +52,7 @@ const HowItWorks = () => {
             >
               <div className="p-8 rounded-2xl bg-card border border-border hover:border-primary/50 transition-smooth hover:shadow-lg">
                 {/* Step Number */}
-                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full gradient-primary flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full gradient-primary flex items-center justify-center text-white font-bold text-xl shadow-lg bg-gradient-to-br from-[var(--color-purple-800)]   to-[var(--color-pink-500)]">
                   {index + 1}
                 </div>
 
