@@ -14,6 +14,7 @@ export default function Login() {
 
     if (response.ok) {
       localStorage.setItem("token", response.token);
+      window.dispatchEvent(new Event("authChange"));
       setMessage("✅ Login bem-sucedido!");
       console.log("Usuário logado:", username); // Debug
       navigate("/"); // Redireciona para a página inicial

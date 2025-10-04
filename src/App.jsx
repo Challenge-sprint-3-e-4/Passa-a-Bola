@@ -15,9 +15,7 @@ import Escolinhas from "./pages/Escolinha";
 import Inicio from "./pages/Inicio";
 
 // Função para verificar se o usuário está logado
-const isLoggedIn = () => {
-  return !!localStorage.getItem("token");
-};
+const isLoggedIn = () => !!localStorage.getItem("token");
 
 export default function App() {
   const navigate = useNavigate();
@@ -30,9 +28,10 @@ export default function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header/>
 
-      <main className="flex-1">
+      {/* Conteúdo principal */}
+      <main className="flex-1 pt-16">
         <Routes>
           <Route path="/login" element={<Login />} />
 
@@ -68,5 +67,7 @@ export default function App() {
 
       <Footer />
     </div>
+      
   );
+
 }

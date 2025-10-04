@@ -1,32 +1,38 @@
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Menu } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.png";
 
-export default function Header() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-
-  // Inicializa o estado de login
+const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+  const navigate = useNavigate();
 
+  const navLinks = [
+    { name: "Início", path: "/" },
+    { name: "Jogadoras", path: "/jogadoras" },
+    { name: "Blog", path: "/blog" },
+    { name: "Clubes", path: "/clubes" },
+    { name: "Campeonatos", path: "/campeonatos" },
+    { name: "Escolinhas", path: "/escolinhas" },
+  ];
+
+  // Atualiza login caso mude localStorage em outra aba
   useEffect(() => {
-    // Função para atualizar login quando o localStorage mudar em outra aba
-    const handleStorageChange = () => {
-      setIsLoggedIn(!!localStorage.getItem("token"));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
-  // Atualiza login sempre que a rota mudar
-  useEffect(() => {
+  const handleAuthChange = () => {
     setIsLoggedIn(!!localStorage.getItem("token"));
-  }, [location]);
+  };
+
+  window.addEventListener("storage", handleAuthChange);
+  window.addEventListener("authChange", handleAuthChange);
+
+  return () => {
+    window.removeEventListener("storage", handleAuthChange);
+    window.removeEventListener("authChange", handleAuthChange);
+  };
+}, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -35,74 +41,49 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <nav className="container mx-auto flex items-center justify-between py-4 px-6">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <img src={Logo} alt="Passa a Bola" className="h-10 w-10" />
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
-            PASSA A BOLA
-          </h1>
-        </div>
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border h-auto md:h-16">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-wrap md:flex-nowrap items-center justify-between py-2 md:py-0">
+          {/* Logo + Texto */}
+          <Link
+            to="/"
+            className="flex flex-col md:flex-row items-center gap-2 transition-smooth hover:opacity-80"
+          >
+            {/* Logo */}
+            <img src={Logo} alt="Passa a Bola" className="h-8 w-auto md:h-16" />
 
-        {/* Links */}
-        <ul
-          id="menu-principal"
-          className={`lg:flex lg:items-center lg:gap-6 text-gray-600 font-medium transition-all duration-300
-            ${isOpen ? "block absolute top-16 right-0 w-56 bg-white shadow-md p-4" : "hidden"} lg:static lg:block`}
-        >
-          <li>
-            <Link
-              to="/"
-              onClick={() => setIsOpen(false)}
-              className={`${
-                location.pathname === "/" ? "text-[var(--color-roxo)]" : "text-gray-600"
-              } hover:text-[var(--color-roxo)]`}
-            >
-              Início
-            </Link>
-          </li>
-          <li>
-            <Link to="/jogadoras" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Jogadoras
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link to="/clubes" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Clubes
-            </Link>
-          </li>
-          <li>
-            <Link to="/campeonatos" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Campeonatos
-            </Link>
-          </li>
-          <li>
-            <Link to="/escolinhas" onClick={() => setIsOpen(false)} className="hover:text-[var(--color-roxo)]">
-              Escolinhas
-            </Link>
-          </li>
+            {/* Texto */}
+            <span className="text-lg md:text-3xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent">
+              PASSA A BOLA
+            </span>
+          </Link>
 
-          {/* Botões mobile */}
-          <div className="flex flex-col gap-3 mt-4 lg:hidden">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-smooth relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:origin-left"
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Botões desktop */}
+          <div className="hidden md:flex gap-3">
             {!isLoggedIn ? (
               <>
                 <Link
                   to="/login"
-                  onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
+                  className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100"
                 >
                   Entrar
                 </Link>
                 <Link
                   to="/cadastro"
-                  onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
                 >
                   Cadastrar
                 </Link>
@@ -110,54 +91,69 @@ export default function Header() {
             ) : (
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
-                aria-label="Encerrar sessão"
+                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
               >
                 Sair
               </button>
             )}
           </div>
-        </ul>
 
-        {/* Botões desktop */}
-        <div className="hidden lg:flex gap-3">
-          {!isLoggedIn ? (
-            <>
-              <Link
-                to="/login"
-                className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100"
-              >
-                Entrar
-              </Link>
-              <Link
-                to="/cadastro"
-                className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-              >
-                Cadastrar
-              </Link>
-            </>
-          ) : (
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90"
-              aria-label="Encerrar sessão"
-            >
-              Sair
-            </button>
-          )}
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
         </div>
 
-        {/* Botão hambúrguer */}
-        <button
-          className="lg:hidden ml-auto p-2 rounded-md border border-gray-300"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-controls="menu-principal"
-          aria-label={isOpen ? "Fechar menu de navegação" : "Abrir menu de navegação"}
-        >
-          {isOpen ? "✖" : "☰"}
-        </button>
-      </nav>
-    </header>
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden py-4 animate-fade-in">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground transition-smooth py-2"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              ))}
+
+              {!isLoggedIn ? (
+                <>
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-4 py-2 border border-gray-400 text-[var(--color-roxo)] rounded-lg hover:bg-gray-100 text-center"
+                  >
+                    Entrar
+                  </Link>
+                  <Link
+                    to="/cadastro"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                  >
+                    Cadastrar
+                  </Link>
+                </>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-lg text-white font-semibold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] hover:opacity-90 text-center"
+                >
+                  Sair
+                </button>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
   );
-}
+};
+
+export default Header;
