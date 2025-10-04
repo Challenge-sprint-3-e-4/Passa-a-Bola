@@ -13,6 +13,7 @@ import Clubes from "./pages/Clubes";
 import Campeonatos from "./pages/Campeonatos";
 import Escolinhas from "./pages/Escolinha";
 import Inicio from "./pages/Inicio";
+import Form from "./pages/Form";
 
 // Função para verificar se o usuário está logado
 const isLoggedIn = () => !!localStorage.getItem("token");
@@ -36,6 +37,11 @@ export default function App() {
           <Route path="/login" element={<Login />} />
 
           {/* Rotas protegidas */}
+          <Route 
+            path="/Form.jsx" 
+            element={isLoggedIn() ? <Form /> : <Navigate to="/login" replace />} 
+          />
+
           <Route
             path="/jogadoras"
             element={isLoggedIn() ? <Jogadoras /> : <Navigate to="/login" replace />}

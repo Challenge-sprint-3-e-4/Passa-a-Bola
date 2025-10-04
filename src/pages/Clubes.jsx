@@ -31,7 +31,7 @@ const Parceiros = () => {
             key={index}
             role="img"
             aria-label={`Avatar do clube parceiro ${index + 1}`}
-            className={`w-16 h-16 flex items-center justify-center rounded-full bg-[var(--color-${color})] text-white font-bold shadow-md`}
+            className={`w-25 h-25 flex items-center justify-center rounded-full bg-[var(--color-${color})] text-white font-bold shadow-md`}
           >
             AB
           </div>
@@ -46,7 +46,10 @@ const Parceiros = () => {
             Tenha acesso antecipado aos melhores talentos, ferramentas de
             organização de campeonatos e muito mais.
           </p>
-          <button className="px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--color-roxo)] to-[var(--color-verde)] text-white text-lg font-bold shadow-md hover:scale-105 transition">
+          <button
+            onClick={() => window.location.href = "../Form.jsx"}
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-[var(--color-roxo)] to-[var(--color-verde)] text-white text-lg font-bold shadow-md hover:scale-105 transition"
+          >
             Solicitar parceria
           </button>
         </div>
