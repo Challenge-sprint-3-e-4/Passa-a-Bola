@@ -104,7 +104,7 @@ export default function Campeonatos() {
             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-gray-50 to-transparent z-10" />
 
             <div className="relative z-20 text-center px-6">
-              <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[var(--color-roxo)] via-[var(--color-rosa)] to-[var(--color-verde)] bg-clip-text text-transparent mb-4 drop-shadow-lg">
+              <h1 className="text-5xl md:text-6xl font-bold  bg-clip-text text-white mb-4 drop-shadow-lg">
                 Campeonatos Passa a Bola
               </h1>
               <p className="text-white/90 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
