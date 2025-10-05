@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 import bola1 from "../assets/bola1.jpg";
 import bola2 from "../assets/bola2.jpg";
 import bola3 from "../assets/bola3.jpg";
-import ballIcon from "../assets/icon-bola.png"; 
+import ballIcon from "../assets/pinRoxo.png"; 
 
 
 const customBallIcon = new L.Icon({
