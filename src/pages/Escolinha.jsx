@@ -1,10 +1,20 @@
 import { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import Swal from "sweetalert2";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import bola1 from "../assets/bola1.jpg";
 import bola2 from "../assets/bola2.jpg";
 import bola3 from "../assets/bola3.jpg";
+import ballIcon from "../assets/icon-bola.png"; 
+
+
+const customBallIcon = new L.Icon({
+  iconUrl: ballIcon,
+  iconSize: [40, 40], 
+  iconAnchor: [20, 40], 
+  popupAnchor: [0, -35], 
+});
 
 export default function Escolinhas() {
   const [results, setResults] = useState([]);
@@ -90,7 +100,7 @@ export default function Escolinhas() {
   return (
     <main className="flex flex-col min-h-screen bg-gray-50">
       {/* 🌈 Hero Procurar Escolinhas */}
-      <section className="w-full py-20 bg-gradient-to-r from-purple-700 via-pink-500 to-green-400 text-center text-white  shadow-md">
+      <section className="w-full py-20 bg-gradient-to-r from-purple-700 via-pink-500 to-green-400 text-center text-white shadow-md">
         <div className="max-w-3xl mx-auto px-6">
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Encontre Escolinhas de Futebol Feminino Perto de Você ⚽
@@ -110,17 +120,15 @@ export default function Escolinhas() {
       {/* 🗺️ Mapa Interativo */}
       <section className="flex flex-col items-center justify-center py-16 px-6">
         <div className="w-full max-w-5xl h-[400px] rounded-2xl shadow-md overflow-hidden bg-white border relative">
-          <MapContainer
-            center={position}
-            zoom={13}
-            style={{ width: "100%", height: "100%" }}
-          >
+          <MapContainer center={position} zoom={13} style={{ width: "100%", height: "100%" }}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+
+            {/* ⚽ Marcadores personalizados */}
             {results.map((el, index) => (
-              <Marker key={index} position={[el.lat, el.lon]}>
+              <Marker key={index} position={[el.lat, el.lon]} icon={customBallIcon}>
                 <Popup>⚽ Escolinha encontrada!</Popup>
               </Marker>
             ))}
@@ -174,11 +182,7 @@ export default function Escolinhas() {
               className="bg-white rounded-2xl shadow-md overflow-hidden border hover:shadow-xl transition-all"
             >
               <div className="relative">
-                <img
-                  src={e.imagem}
-                  alt={e.nome}
-                  className="w-full h-48 object-cover"
-                />
+                <img src={e.imagem} alt={e.nome} className="w-full h-48 object-cover" />
                 <span className="absolute top-2 right-2 bg-purple-600 text-white text-xs px-3 py-1 rounded-full">
                   {e.faixaEtaria}
                 </span>
