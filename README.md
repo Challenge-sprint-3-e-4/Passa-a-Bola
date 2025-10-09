@@ -44,9 +44,9 @@ O sistema possui funcionalidades de login com validação de credenciais e contr
 passabola/
 │
 ├─ src/
-│   ├─ assets/            # Imagens do projeto (logo, redes sociais, etc.)
-│   ├─ components/        # Componentes reutilizáveis (Header, Footer, Login, ServidorLogin)
-│   ├─ pages/             # Páginas da aplicação (Jogadoras, Blog, Clubes, Campeonatos, Escolinhas, Início)
+│   ├─ assets/            # Imagens do projeto 
+│   ├─ components/        # Componentes reutilizáveis 
+│   ├─ pages/             # Páginas da aplicação 
 │   ├─ data/              # Arquivos de seed para simulação de dados
 │   │   └─ usersSeed.js   # Usuário admin para login
 │   ├─ App.jsx            # Componente principal com roteamento React Router
@@ -121,8 +121,8 @@ export const usersSeed = [
 * **Header e Footer responsivos** – menu hamburguer para telas pequenas.
 * **Página Escolinhas** – mapa interativo (OpenStreetMap + Overpass API) que mostra escolinhas próximas ao usuário.
 * **Blog** – publicação de histórias inspiradoras com título, categoria, conteúdo e upload de imagem. Cards padronizados, feedback visual com SweetAlert2.
-* **Jogadoras** – perfil das atletas com informações de jogos, gols, assistências e foto. Layout responsivo em cards padronizados.
-* **Campeonatos** – cadastro e visualização de campeonatos, contagem de gols, placares em tempo real e interface amigável de administração.
+* **Jogadoras** – atletas com informações de jogos, gols, assistências e foto. Layout responsivo em cards padronizados.
+* **Campeonatos** – cadastro e visualização de campeonatos, contagem de gols e interface amigável.
 * **Clubes Parceiros** – grid responsivo de clubes, com card de chamada para solicitar parceria.
 * **Redirecionamento automático** para login caso usuário não esteja autenticado.
 * **Design e cores** consistentes com a paleta do projeto.
